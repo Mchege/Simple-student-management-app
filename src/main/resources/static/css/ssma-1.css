@@ -1,0 +1,80 @@
+form{
+	width:40%;
+	border-radius: 5px;
+  	background-color: #f2f2f2;
+  	padding: 30px;
+  	font-size: 0.9em;
+}
+
+input[type=text],select{
+	width:100%;
+	border:1px solid #dbdbc9;
+	border-radius:4px;
+	margin:5px 2px;
+	padding: 10px 4px;
+}
+
+textarea{
+	width:100%;
+	border:1px solid #dbdbc9;
+	border-radius:4px;
+	margin:5px 2px;
+	padding: 10px 4px;
+	height: 150px;
+	resize: none;
+}
+
+table{
+	width:100%;
+}
+
+th{
+	background:#369945;
+}
+
+th, td{
+	text-align:left;
+	padding: 10px;
+	border-bottom:1px solid #dbdbc9;
+
+}
+
+
+button{
+	width:90%;
+	background:#5cad3d;
+	padding:5px;
+	border:1px solid #dbdbc9;
+	color:white;
+	border-radius: 2px;
+
+}
+button:hover{
+	color:#5cad3d;
+	background:white;
+}
+
+fieldset{
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin: 20px;
+    border:1px solid #dbdbc9;
+}
+legend{
+    font-weight:bold;
+    font-size:1.5em;
+
+}
+
+.save-button{
+    width: 50%;
+    float: right;
+    background: #ff5050;
+    padding:7px;
+    border:1px solid #dbdbc9;
+}
+
+.save-button:hover{
+    background:#5cad3d;
+    color:white;
+}
