@@ -22,6 +22,7 @@ public class Student {
     private LocalDateTime expectedCompletionDate;
     private Course course;
 
+
     public Student(){
         this.id = UUID.randomUUID().toString();
         LocalDateTime now = LocalDateTime.now();
@@ -38,7 +39,7 @@ public class Student {
     @Override
     public String toString(){
 
-        return "["+this.id +" ," +this.firstName +" , "+this.lastName+" ]";
+        return "["+this.id +" ," +this.firstName +" , "+this.lastName+"," +(this.course != null? this.course.getName():"unknown")+" ]";
 
     }
 

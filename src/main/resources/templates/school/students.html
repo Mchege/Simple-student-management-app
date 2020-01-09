@@ -24,7 +24,9 @@
                         <td th:text="${s.id}">*{ Id</td>
                         <td th:text="${s.firstName}">1 Name</td>
                         <td th:text="${s.lastName}">Last Name</td>
-                        <td th:text="${s.course} ? s.course.name : 'Unknown'">course Name</td>
+                        <td th:text="${s.course} ? ${s.course.name}:wq
+                         :Wq
+                         : 'Unknown'">course Name</td>
                     </tr>
                 </tbody>
             </table>
@@ -42,8 +44,8 @@
 
                     <input type="text" name="lastName" th:field="*{lastName}">
                 <div th:unless="${#lists.isEmpty(courses)}">
-                        <label for="course"> Course</label>
-                    <select>
+                    <label for="course"> Course</label>
+                    <select th:field="*{course}">
                        <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name}">Course Name</option>
                     </select>
                 </div>
