@@ -3,24 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title th:text ="#{school.name}">Title</title>
+    <link type="text/css" media="all" rel="stylesheet" th:href="@{/css/ssma.css}">
+    <style type="text/css">
+		.topnav {
+		  overflow: hidden;
+		  background-color: #333;
+		  margin-top: 0px;
+		}
+
+		.topnav a {
+		  float: left;
+		  color: #f2f2f2;
+		  text-align: center;
+		  padding: 14px 16px;
+		  text-decoration: none;
+		  font-size: 17px;
+		}
+
+		.topnav a:hover {
+		  background-color: #ddd;
+		  color: black;
+		}
+
+		.topnav a.active {
+		  background-color: #4CAF50;
+		  color: white;
+		}
+    </style>
 </head>
 <body>
+<div class="container">
+    <div th:replace="~{fragments/header :: header}">Welcome</div>
+    <div class="topnav">
+        <a th:href="@{school/students}">Students</a>
+        <a th:href="@{school/courses}">Courses</a>
+        <a href="#">About</a>
+    </div>
+</div>
 
-<p style="font-family:consolas;font-size:20px;font-weight: bold;">
-    Welcome to <span th:text="#{school.name}"></span>
-</p>
-<p>
-    Follow the following Links for more of what we offer.
-    <ul>
-        <li>
-            <a th:href="@{school/students}">Students</a>
-        </li>
-        <li>
-            <a th:href="@{school/courses}">Courses</a>
-        </li>
-
-    </ul>
-</p>
 
 </body>
 </html>

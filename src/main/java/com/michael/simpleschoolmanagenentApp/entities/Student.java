@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +19,14 @@ public class Student {
     private String firstName;
     private String lastName;
 
-    private LocalDateTime admissionDate;
-    private LocalDateTime expectedCompletionDate;
+    private LocalDate admissionDate;
+    private LocalDate expectedCompletionDate;
     private Course course;
 
 
     public Student(){
         this.id = UUID.randomUUID().toString();
-        LocalDateTime now = LocalDateTime.now();
+        LocalDate now = LocalDate.now();
         this.admissionDate = now;
     }
 

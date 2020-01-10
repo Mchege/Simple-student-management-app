@@ -3,10 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <title>Courses</title>
-    <link type="text/css" media="all" rel="stylesheet" th:href="@{/css/ssma-1.css}"/>
+    <link type="text/css" media="all" rel="stylesheet" th:href="@{/css/ssma.css}"/>
 </head>
 <body>
-    <div  th:unless="${#lists.isEmpty(courses)}">
+    <div class="container">
+        <div th:replace="~{fragments/header :: header}">Header</div>
+        <div th:unless="${#lists.isEmpty(courses)}">
+            <table>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>units</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="c : ${courses}">
+                    <td th:text="${c.id}">Course Id</td>
+                    <td th:text="${c.name}">Course Name</td>
+                    <td th:text="${c.description}">Description</td>
+                    <td th:text="${c.units}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <fieldset>
+                <legend>Add a new course</legend>
+                <form th:object="${course}" th:action="@{/school/courses}" method="post">
+                    <label class="div-label" for="name">Name</label>
+                    <input type="text" name="name" placeholder="Course Name..." th:field="*{name}">
+                    <label class="div-label" for="description">Description</label>
+                    <textarea type="text" name="description" placeholder="Course Description..." th:field="*{description}"></textarea>
+                    <label class="div-label" for="units">Units</label>
+
+                    <table id="unit">
+                        <thead>
+                        <tr>
+                            <th>Serial</th>
+                            <th></th>
+                            <th>
+                                <button class="unit-btn" type="submit" name="addUnit">Add Unit</button>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="unit, unitStat : ${course.units}">
+                            <td th:text="${unitStat.count}">1</td>
+                            <td>
+                                <input type="text" placeholder="Unit Name..." th:field="*{units[__${unitStat.index}__]}" />
+                            </td>
+                            <td>
+                                <button type="submit" class="unit-btn" th:value="${unitStat.index}" name="removeUnit" >Remove Unit</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <button class="save-button" type="submit" name="saveCourse">Add Course</button>
+                    </div>
+                </form>
+            </fieldset>
+        </div>
+    </div>
+    <!--<div  th:unless="${#lists.isEmpty(courses)}">
         <fieldset>
             <legend>Courses offered at <span th:text="#{school.name}">The school</span></legend>
             <table class="content-table">
@@ -35,9 +96,9 @@
             <legend>Add a new course</legend>
             <form th:object="${course}" th:action="@{/school/courses}" method="post">
                     <label class="div-label" for="name">Name</label>
-                    <input type="text" name="name" th:field="*{name}">
+                    <input type="text" name="name" placeholder="Course Name..." th:field="*{name}">
                     <label class="div-label" for="description">Description</label>
-                    <textarea type="text" name="description" th:field="*{description}"></textarea>
+                    <textarea type="text" name="description" placeholder="Course Description..." th:field="*{description}"></textarea>
                     <label class="div-label" for="units">Units</label>
 
                     <table class="content-table">
@@ -53,7 +114,7 @@
                             <tr th:each="unit, unitStat : ${course.units}">
                                 <td th:text="${unitStat.count}">1</td>
                                 <td>
-                                    <input type="text" th:field="*{units[__${unitStat.index}__]}" />
+                                    <input type="text" placeholder="Unit Name..." th:field="*{units[__${unitStat.index}__]}" />
                                 </td>
                                 <td>
                                     <button type="submit" th:value="${unitStat.index}" name="removeUnit" >Remove Unit</button>
@@ -66,7 +127,7 @@
                 </div>
             </form>
         </fieldset>
-    </div>
+    </div> -->
 
 
 

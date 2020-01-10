@@ -3,11 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Students</title>
-    <link type="text/css" media="all" rel="stylesheet" th:href="@{/css/ssma-1.css}">
+    <link type="text/css" media="all" rel="stylesheet" th:href="@{/css/ssma.css}">
 </head>
 
 <body>
-    <div th:unless="${#lists.isEmpty(students)}">
+    <div class="container">
+        <div th:replace="~{fragments/header :: header}">Welcome</div>
+        <div th:unless="${#lists.isEmpty(students)}">
+            <table>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Course</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="s : ${students}">
+                    <td th:text="${s.id}">*{ Id</td>
+                    <td th:text="${s.firstName}">1 Name</td>
+                    <td th:text="${s.lastName}">Last Name</td>
+                    <td th:text="${s.course} ? ${s.course.name} : 'Unknown'">course Name</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <fieldset>
+                <legend>Add Student</legend>
+                <form th:action="@{/school/students}" th:object="${student}" method="post">
+                    <label class="div-label" for="firstName"> First Name</label>
+                    <input type="text" name="firstName" th:field="*{firstName}">
+
+                    <label class="div-label" for="lastName"> Last Name</label>
+
+                    <input type="text" name="lastName" th:field="*{lastName}">
+                    <div th:unless="${#lists.isEmpty(courses)}">
+                        <label for="course"> Course</label>
+                        <select th:field="*{course}">
+                            <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name}">Course Name</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button class="save-button" name="saveStudent" type="submit" >Add Student</button>
+                    </div>
+
+                </form>
+            </fieldset>
+        </div>
+    </div>
+    <!--<div th:unless="${#lists.isEmpty(students)}">
         <fieldset>
             <legend>Students</legend>
             <table class="content-table">
@@ -24,9 +70,7 @@
                         <td th:text="${s.id}">*{ Id</td>
                         <td th:text="${s.firstName}">1 Name</td>
                         <td th:text="${s.lastName}">Last Name</td>
-                        <td th:text="${s.course} ? ${s.course.name}:wq
-                         :Wq
-                         : 'Unknown'">course Name</td>
+                        <td th:text="${s.course} ? ${s.course.name} : 'Unknown'">course Name</td>
                     </tr>
                 </tbody>
             </table>
@@ -55,7 +99,7 @@
 
             </form>
         </fieldset>
-    </div>
+    </div>-->
 
 </body>
 </html>
